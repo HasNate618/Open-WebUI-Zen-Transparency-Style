@@ -1,0 +1,211 @@
+/* ==UserStyle==
+@name           Open WebUI - Zen Transparency Compatibility
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    Glass/transparency-friendly styling for Open WebUI in Zen Browser.
+@author         Copilot
+==/UserStyle== */
+
+@-moz-document regexp("https?://localhost:(?:8080|3000)(?:/.*)?$")
+{
+  :root {
+    --owui-glass-bg: rgba(12, 16, 24, 0.42);
+    --owui-glass-bg-strong: rgba(12, 16, 24, 0.62);
+    --owui-glass-border: rgba(255, 255, 255, 0.14);
+    --owui-glass-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    --owui-surface-strong: rgba(8, 12, 18, 0.74);
+    --owui-hover-bg: rgba(148, 163, 184, 0.18);
+    --owui-selected-bg: rgba(148, 163, 184, 0.22);
+    --owui-text-strong: #f5f7fb;
+    --owui-text-muted: rgba(229, 235, 255, 0.76);
+  }
+
+  html.light {
+    --owui-glass-bg: rgba(245, 248, 252, 0.55);
+    --owui-glass-bg-strong: rgba(245, 248, 252, 0.76);
+    --owui-glass-border: rgba(15, 23, 42, 0.14);
+    --owui-glass-shadow: 0 12px 32px rgba(28, 32, 44, 0.14);
+    --owui-surface-strong: rgba(255, 255, 255, 0.86);
+    --owui-hover-bg: rgba(15, 23, 42, 0.1);
+    --owui-selected-bg: rgba(15, 23, 42, 0.14);
+    --owui-text-strong: #111827;
+    --owui-text-muted: rgba(17, 24, 39, 0.72);
+  }
+
+  html,
+  body,
+  body[data-sveltekit-preload-data],
+  .app,
+  .app > div,
+  #chat-container,
+  #chat-pane,
+  #messages-container,
+  #chat-conversation,
+  #navbar-bg-gradient-to-b,
+  .sidebar-bg-gradient-to-b,
+  .sidebar-bg-gradient-to-t {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  body,
+  #chat-input,
+  .markdown-prose {
+    color: var(--owui-text-strong) !important;
+  }
+
+  #sidebar,
+  #chat-container nav,
+  #message-input-container,
+  #controls-container {
+    background: var(--owui-glass-bg) !important;
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+    box-shadow: var(--owui-glass-shadow) !important;
+  }
+
+  #sidebar {
+    border-left: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+
+  #controls-container {
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+  }
+
+  #controls-resizer {
+    border-right-color: var(--owui-glass-border) !important;
+  }
+
+  /* Remove gradient from sidebar chat item menu and force transparent background */
+  #sidebar-chat-item-menu,
+  #sidebar-chat-item-menu * {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  #chat-container nav {
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: 1px solid var(--owui-glass-border) !important;
+  }
+
+  #message-input-container {
+    background: var(--owui-glass-bg-strong) !important;
+  }
+
+  #chat-input-container,
+  #chat-input,
+  #chat-input.tiptap,
+  #chat-input.ProseMirror,
+  .input-prose {
+    background: transparent !important;
+    color: var(--owui-text-strong) !important;
+  }
+
+  #chat-input p.is-editor-empty:first-child::before,
+  #chat-input [data-placeholder]::before {
+    color: var(--owui-text-muted) !important;
+    opacity: 0.9 !important;
+  }
+
+  #input-menu-button,
+  #integration-menu-button,
+  #voice-input-button {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+  }
+
+  #input-menu-button:hover,
+  #integration-menu-button:hover,
+  #voice-input-button:hover {
+    background: var(--owui-hover-bg) !important;
+    border-color: var(--owui-glass-border) !important;
+  }
+
+  #sidebar-resizer {
+    border-left-color: var(--owui-glass-border) !important;
+  }
+
+  #sidebar [id="sidebar-chat-item"].selected,
+  #sidebar [id="sidebar-chat-item"][class*="selected"] {
+    background: var(--owui-selected-bg) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+  }
+
+  [role="dialog"],
+  [role="menu"],
+  [role="listbox"],
+  [role="tooltip"],
+  [aria-modal="true"],
+  [class*="popover"],
+  [class*="dropdown"],
+  [class*="modal"],
+  [class*="dialog"],
+  [class*="toast"] {
+    background: var(--owui-glass-bg-strong) !important;
+    color: var(--owui-text-strong) !important;
+    backdrop-filter: blur(22px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+    box-shadow: var(--owui-glass-shadow) !important;
+  }
+
+  .markdown-prose pre,
+  .markdown-prose code,
+  .ProseMirror pre,
+  .ProseMirror code,
+  pre.shiki,
+  .shiki,
+  .cm-editor,
+  .cm-tooltip {
+    background: var(--owui-surface-strong) !important;
+    color: var(--owui-text-strong) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+    box-shadow: none !important;
+  }
+
+  .markdown-prose table,
+  .markdown-prose th,
+  .markdown-prose td,
+  .sqlite-table,
+  .sqlite-table th,
+  .sqlite-table td,
+  .csv-table,
+  .csv-table th,
+  .csv-table td {
+    background: var(--owui-surface-strong) !important;
+    color: var(--owui-text-strong) !important;
+    border-color: var(--owui-glass-border) !important;
+  }
+
+  .markdown-prose blockquote {
+    background: var(--owui-glass-bg) !important;
+    border-left: 3px solid var(--owui-glass-border) !important;
+  }
+
+  div[class*="bg-black/60"] {
+    background: rgba(0, 0, 0, 0.42) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(148, 163, 184, 0.45) !important;
+    border: 2px solid transparent !important;
+    background-clip: padding-box !important;
+    border-radius: 999px !important;
+  }
+}
