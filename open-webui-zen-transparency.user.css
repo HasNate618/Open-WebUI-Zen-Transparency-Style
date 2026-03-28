@@ -78,6 +78,14 @@
     border-bottom: none !important;
   }
 
+  /* Right pane container (controls panel wrapper) */
+  [data-pane-id="zOgeSlwTqo"],
+  [data-pane][class*="z-10"] {
+    background: var(--owui-glass-bg) !important;
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+  }
+
   #controls-resizer {
     border-right-color: var(--owui-glass-border) !important;
   }
@@ -115,6 +123,17 @@
   #chat-input [data-placeholder]::before {
     color: var(--owui-text-muted) !important;
     opacity: 0.9 !important;
+  }
+
+  /* Remove suggestion list background but keep text visible */
+  .suggestion-list-container {
+    background: transparent !important;
+  }
+
+  #suggestions-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 
   #input-menu-button,
