@@ -86,6 +86,12 @@
     -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
   }
 
+  /* Chat panel - target the inner div with bg-white dark:bg-gray-850 classes */
+  [data-pane][class*="z-10"] > div > div[class*="bg-white"][class*="dark:bg-gray"] {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
   #controls-resizer {
     border-right-color: var(--owui-glass-border) !important;
   }
