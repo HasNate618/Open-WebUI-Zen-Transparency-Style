@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Open WebUI - Zen Transparency Compatibility
 @namespace      github.com/openstyles/stylus
-@version        1.0.0
+@version        1.0.2
 @description    Glass/transparency-friendly styling for Open WebUI in Zen Browser.
 @author         Copilot
 ==/UserStyle== */
@@ -9,15 +9,15 @@
 @-moz-document regexp("https?://localhost:(?:8080|3000)(?:/.*)?$")
 {
   :root {
-    --owui-glass-bg: rgba(12, 16, 24, 0.42);
-    --owui-glass-bg-strong: rgba(12, 16, 24, 0.62);
-    --owui-glass-border: rgba(255, 255, 255, 0.14);
-    --owui-glass-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
-    --owui-surface-strong: rgba(8, 12, 18, 0.74);
-    --owui-hover-bg: rgba(148, 163, 184, 0.18);
-    --owui-selected-bg: rgba(148, 163, 184, 0.22);
-    --owui-text-strong: #f5f7fb;
-    --owui-text-muted: rgba(229, 235, 255, 0.76);
+    --owui-glass-bg: rgba(6, 6, 6, 0.46);
+    --owui-glass-bg-strong: rgba(0, 0, 0, 0.72);
+    --owui-glass-border: rgba(255, 255, 255, 0.08);
+    --owui-glass-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    --owui-surface-strong: rgba(0, 0, 0, 0.82);
+    --owui-hover-bg: rgba(255, 255, 255, 0.04);
+    --owui-selected-bg: rgba(255, 255, 255, 0.06);
+    --owui-text-strong: #f7f7f8;
+    --owui-text-muted: rgba(247, 247, 248, 0.7);
   }
 
   html.light {
@@ -112,8 +112,14 @@
     border-bottom: 1px solid var(--owui-glass-border) !important;
   }
 
-  #message-input-container {
+  /* Match the composer and user bubble so they read as the same glass surface. */
+  #message-input-container,
+  .chat-user .rounded-3xl.max-w-\[90\%\] {
     background: var(--owui-glass-bg-strong) !important;
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+    box-shadow: var(--owui-glass-shadow) !important;
   }
 
   #chat-input-container,
@@ -209,6 +215,30 @@
   .csv-table td {
     background: var(--owui-surface-strong) !important;
     color: var(--owui-text-strong) !important;
+    border-color: var(--owui-glass-border) !important;
+  }
+
+  .chat-assistant .overflow-x-auto {
+    background: var(--owui-glass-bg-strong) !important;
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+    border-radius: 0.75rem !important;
+    box-shadow: var(--owui-glass-shadow) !important;
+  }
+
+  .chat-assistant .overflow-x-auto > table,
+  .chat-assistant .overflow-x-auto > table thead,
+  .chat-assistant .overflow-x-auto > table tbody,
+  .chat-assistant .overflow-x-auto > table tr,
+  .chat-assistant .overflow-x-auto > table th,
+  .chat-assistant .overflow-x-auto > table td {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .chat-assistant .overflow-x-auto > table th,
+  .chat-assistant .overflow-x-auto > table td {
     border-color: var(--owui-glass-border) !important;
   }
 
