@@ -55,8 +55,7 @@
     color: var(--owui-text-strong) !important;
   }
 
-  #message-input-container,
-  #controls-container {
+  #message-input-container {
     background: var(--owui-glass-bg) !important;
     backdrop-filter: blur(20px) saturate(135%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
@@ -70,12 +69,6 @@
     -webkit-backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
-  }
-
-  #controls-container {
-    border-top: none !important;
-    border-right: none !important;
-    border-bottom: none !important;
   }
 
   /* Right pane container (controls panel wrapper) */
