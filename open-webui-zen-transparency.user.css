@@ -1,18 +1,18 @@
 /* ==UserStyle==
 @name           Open WebUI - Zen Transparency Compatibility
 @namespace      github.com/openstyles/stylus
-@version        1.0.2
+@version        1.0.3
 @description    Glass/transparency-friendly styling for Open WebUI in Zen Browser.
-@author         Copilot
+@author         HasNate618
 ==/UserStyle== */
 
-@-moz-document regexp("https?://localhost:(?:8080|3000)(?:/.*)?$")
+@-moz-document regexp("https?://(?:localhost:(?:8080|3000)|homelab:8443)(?:/.*)?$")
 {
   :root {
-    --owui-glass-bg: rgba(6, 6, 6, 0.46);
-    --owui-glass-bg-strong: rgba(0, 0, 0, 0.72);
-    --owui-glass-border: rgba(255, 255, 255, 0.08);
-    --owui-glass-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    --owui-glass-bg: rgba(6, 6, 6, 0.4);
+    --owui-glass-bg-strong: rgba(16, 16, 16, 0.5);
+    --owui-glass-border: rgba(255, 255, 255, 0.1);
+    --owui-glass-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
     --owui-surface-strong: rgba(0, 0, 0, 0.82);
     --owui-hover-bg: rgba(255, 255, 255, 0.04);
     --owui-selected-bg: rgba(255, 255, 255, 0.06);
@@ -55,8 +55,6 @@
     color: var(--owui-text-strong) !important;
   }
 
-  #sidebar,
-  #chat-container nav,
   #message-input-container,
   #controls-container {
     background: var(--owui-glass-bg) !important;
@@ -67,9 +65,11 @@
   }
 
   #sidebar {
-    border-left: none !important;
-    border-top: none !important;
-    border-bottom: none !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   #controls-container {
@@ -106,10 +106,11 @@
   }
 
   #chat-container nav {
-    border-left: none !important;
-    border-right: none !important;
-    border-top: none !important;
-    border-bottom: 1px solid var(--owui-glass-border) !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   /* Match the composer and user bubble so they read as the same glass surface. */
@@ -163,7 +164,7 @@
   }
 
   #sidebar-resizer {
-    border-left-color: var(--owui-glass-border) !important;
+    border-left-color: transparent !important;
   }
 
   #sidebar [id="sidebar-chat-item"].selected,
@@ -191,9 +192,7 @@
   }
 
   .markdown-prose pre,
-  .markdown-prose code,
   .ProseMirror pre,
-  .ProseMirror code,
   pre.shiki,
   .shiki,
   .cm-editor,
@@ -202,6 +201,17 @@
     color: var(--owui-text-strong) !important;
     border: 1px solid var(--owui-glass-border) !important;
     box-shadow: none !important;
+  }
+
+  .markdown-prose :not(pre) > code,
+  .markdown-prose code.codespan,
+  .ProseMirror :not(pre) > code {
+    background: var(--owui-glass-bg) !important;
+    color: var(--owui-text-strong) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+    border-radius: 0.45rem !important;
+    box-shadow: var(--owui-glass-shadow) !important;
+    padding: 0.08rem 0.4rem !important;
   }
 
   .markdown-prose table,
@@ -242,6 +252,60 @@
     border-color: var(--owui-glass-border) !important;
   }
 
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button),
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border {
+    background: var(--owui-glass-bg-strong) !important;
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+    border: 1px solid var(--owui-glass-border) !important;
+    border-radius: 1rem !important;
+    box-shadow: var(--owui-glass-shadow) !important;
+    overflow: hidden !important;
+  }
+
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) > div:first-child,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border > div:first-child {
+    top: 0 !important;
+    background: var(--owui-glass-bg) !important;
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+  }
+
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) button,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border button {
+    background: transparent !important;
+    color: var(--owui-text-strong) !important;
+    border: 1px solid transparent !important;
+  }
+
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) button:hover,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border button:hover {
+    background: var(--owui-hover-bg) !important;
+    border-color: var(--owui-glass-border) !important;
+  }
+
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .bg-white,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .bg-gray-50,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .bg-black,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .cm-editor,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .cm-scroller,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .cm-gutters,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .cm-content,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) .cm-line,
+  .chat-assistant div[dir="ltr"]:has(.copy-code-button) [id^="plt-canvas-"],
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .bg-white,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .bg-gray-50,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .bg-black,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .cm-editor,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .cm-scroller,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .cm-gutters,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .cm-content,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border .cm-line,
+  .chat-assistant div[dir="ltr"].relative.flex.flex-col.rounded-2xl.border [id^="plt-canvas-"] {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
   .markdown-prose blockquote {
     background: var(--owui-glass-bg) !important;
     border-left: 3px solid var(--owui-glass-border) !important;
@@ -253,14 +317,25 @@
     -webkit-backdrop-filter: blur(4px) !important;
   }
 
+  /* Firefox scrollbar */
+  * {
+    scrollbar-color: rgba(100, 110, 125, 0.5) transparent !important;
+    scrollbar-width: thin !important;
+  }
+
+  /* Chromium scrollbar */
   *::-webkit-scrollbar-track {
     background: transparent !important;
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: rgba(148, 163, 184, 0.45) !important;
+    background-color: rgba(100, 110, 125, 0.5) !important;
     border: 2px solid transparent !important;
     background-clip: padding-box !important;
     border-radius: 999px !important;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(120, 130, 145, 0.6) !important;
   }
 }
